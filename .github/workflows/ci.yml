@@ -1,0 +1,14 @@
+name: Production Health Check
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run health check
+        run: chmod +x scripts/health-check.sh && ./scripts/health-check.sh
